@@ -54,7 +54,7 @@
   <br><br>
  </tr>
   <?php
-$con = mysqli_connect("localhost", "root", "", "gallery");
+$con = mysqli_connect("localhost", "root", "root", "gallery");
 
   if ($con->connect_error) {
    die("Connection failed: " . $con->connect_error);

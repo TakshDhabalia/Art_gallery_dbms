@@ -117,7 +117,7 @@ p{
 <?php
 $host="localhost";
 $user="root";
-$password="";
+$password="root";
 $con= new mysqli($host,$user,$password,"gallery");
 if ($con->connect_error) {
             die("Connection failed: " . $con->connect_error);
