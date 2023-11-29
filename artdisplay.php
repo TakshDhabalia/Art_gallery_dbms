@@ -57,9 +57,7 @@ $conn = mysqli_connect("localhost", "root", "root", "gallery");
 
   $sql = "SELECT artid, title, year, type_of_art, price, eid, gid, artistid FROM artwork";
   $result = $conn->query($sql);
-  if ($result->num_rows > 0)
-   {
-   
+if ($result->num_rows > 0){
    while($row = $result->fetch_assoc())
     {
     echo "<tr><td>" . $row["artid"]. "</td><td>" . $row["title"]. "</td><td>" . $row["year"]. "</td><td>" . $row["type_of_art"]. "</td><td>" . $row["price"]. "</td><td>" . $row["eid"]. "</td><td>" . $row["gid"]. "</td><td>"

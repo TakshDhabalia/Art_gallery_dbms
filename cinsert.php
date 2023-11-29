@@ -10,12 +10,12 @@
     $phone = $_POST['phone'];
     $artid = $_POST['artid'];
 
-    $link = new mysqli('localhost','root','','gallery');
+    $link = new mysqli('localhost','root','root','gallery');
 
     if($link->connect_error)
         die('connection error: '.$link->connect_error);
 
-    $sql3 = "INSERT INTO customer(custid, gid, artid, fname, lname, dob, address, phone) VALUES('".$custid."', '".$gid."', '".$artid."', '".$fname."', '".$lname."', '".$dob."', '".$address."',  '".$phone."')";
+    $sql3 = "INSERT INTO customer(custid, gid, artid, fname, lname, dob, address) VALUES('".$custid."', '".$gid."', '".$artid."', '".$fname."', '".$lname."', '".$dob."', '".$address."')";
 
     $result = $link->query($sql3); 
 

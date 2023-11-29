@@ -10,12 +10,12 @@
     $year = $_POST['year'];
     $price = $_POST['price'];
 
-    $link = new mysqli('localhost','root','','gallery');
+    $link = new mysqli('localhost','root','root','gallery');
 
     if($link->connect_error)
         die('connection error: '.$link->connect_error);
 
-    $sql3 = "INSERT INTO artwork(artid, title, type_of_art, price, eid, gid, artistid, year) VALUES('".$artid."', '".$title."', '".$type_of_art."', '".$price."', '".$eid."', '".$gid."', '".$artistid."', '".$year."')";
+    $sql3 = "INSERT INTO artwork(artid, title, type_of_art, price, eid, gid, artistid, year) VALUES('".$artid."', '".$title."', '".$type_of_art."', '".$price."', '".$eid."', '".$gid."', '".$artistid."', '".$year."') ";
 
     $result = $link->query($sql3); 
 

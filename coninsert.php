@@ -3,7 +3,7 @@
     $custid = $_POST['custid'];
     $phone = $_POST['phone'];
 
-    $link = new mysqli('localhost','root','','gallery');
+    $link = new mysqli('localhost','root','root','gallery');
 
     if($link->connect_error)
         die('connection error: '.$link->connect_error);
