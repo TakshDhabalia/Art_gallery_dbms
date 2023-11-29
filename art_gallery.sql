@@ -52,6 +52,7 @@ CREATE TABLE IF NOT EXISTS `artist` (
   `lname1` char(25) DEFAULT NULL,
   `birthplace` char(25) DEFAULT NULL,
   `style` char(25) DEFAULT NULL,
+  'genre' char(25),
   PRIMARY KEY (`artistid`),
   KEY `gid` (`gid`),
   KEY `eid` (`eid`),
@@ -62,18 +63,40 @@ CREATE TABLE IF NOT EXISTS `artist` (
 -- Dumping data for table `artist`
 --
 
-INSERT INTO `artist` (`artistid`, `gid`, `custid`, `eid`, `fname1`, `lname1`, `birthplace`, `style`) VALUES
-('ART1', 'MM123', 'AT2000', 'AD22', 'Georgia', 'O Keeffe', 'USA', 'Oil on Canvas'),
-('ART2', 'TLM123', 'AR1998', 'AD55', 'Pablo', 'Picasso', 'Spain', 'Analytic Cubism'),
-('ART3', 'BM123', 'AD1998', 'AD88', 'Rembrandt', 'van Rijn', 'Netherlands', 'Oil Painting'),
-('ART4', 'JG123', 'AM1994', 'AD00', 'Theodore', 'Chasseriau', 'France', 'Oil Painting'),
-('ART5', 'NG123', 'PM1996', 'AD11', 'Leonardo', 'da Vinci', 'Italy', 'High Renaissance');
+INSERT INTO `artist` (`artistid`, `gid`, `custid`, `eid`, `fname1`, `lname1`, `birthplace`, `style`,'genre') VALUES
+('ART1', 'MM123', 'AT2000', 'AD22', 'Georgia', 'O Keeffe', 'USA', 'Oil on Canvas', 'Realistic'),
+('ART2', 'TLM123', 'AR1998', 'AD55', 'Pablo', 'Picasso', 'Spain', 'Analytic Cubism', 'Realistic'),
+('ART3', 'BM123', 'AD1998', 'AD88', 'Rembrandt', 'van Rijn', 'Netherlands', 'Oil Painting', 'comical'),
+('ART4', 'JG123', 'AM1994', 'AD00', 'Theodore', 'Chasseriau', 'France', 'Oil Painting','comical'),
+('ART5', 'NG123', 'PM1996', 'AD11', 'Leonardo', 'da Vinci', 'Italy', 'High Renaissance', 'abstract');
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `artwork`
 --
+DELIMITER $$
+CREATE PROCEDURE `GET_GENRE`()
+BEGIN
+    DECLARE done INT DEFAULT FALSE;
+    DECLARE artist_name VARCHAR(50);
+    DECLARE cur CURSOR FOR SELECT DISTINCT a.artistname FROM artwork a WHERE a.artistname LIKE '%Henre%';
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+
+    OPEN cur;
+
+    read_loop: LOOP
+        FETCH cur INTO artist_name;
+        IF done THEN
+            LEAVE read_loop;
+        END IF;
+        SELECT artist_name;
+    END LOOP;
+
+    CLOSE cur;
+    SELECT 'Procedure executed successfully!';
+END $$
+DELIMITER ;
 
 DROP TABLE IF EXISTS `artwork`;
 CREATE TABLE IF NOT EXISTS `artwork` (
