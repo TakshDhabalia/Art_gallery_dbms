@@ -60,7 +60,7 @@ $con = mysqli_connect("localhost", "root", "root", "gallery");
    die("Connection failed: " . $con->connect_error);
   } 
 
-  $sql = "SELECT * from Exhibition";
+  $sql = "SELECT * from Exhibition JOIN artist_id ON artists.artist_id = exhibition.artist_id ";
   mysqli_query($con,$sql);
 
   if ($result = mysqli_query($con,$sql))
